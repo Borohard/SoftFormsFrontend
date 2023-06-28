@@ -31,7 +31,12 @@ export const softFormsApi = createApi({
                 body
             })
         }),
-        getSurveyById: build.query(),
+        getSurveyById: build.query({
+            query: (surveyId) => ({
+                url: `Survey/${surveyId}`,
+                headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+            })
+        }),
         createSurvey: build.mutation(
             {
                 query: () => ({
