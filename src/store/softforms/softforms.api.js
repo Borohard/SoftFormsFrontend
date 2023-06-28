@@ -7,7 +7,12 @@ export const softFormsApi = createApi({
     }),
     refetchOnFocus: true,
     endpoints: build => ({
-        userSurveys: build.query(),
+        userSurveys: build.query({
+            query: () => ({
+                url: 'Survey',
+                headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
+            }),
+        }),
         deleteSurvey: build.mutation({
             query: (surveyId) => ({
                 url: 'Survey',
